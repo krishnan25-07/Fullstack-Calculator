@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 const App = () => {
-  const API_URL = 'https://calculator-mtq1.onrender.com'
+  const API_URL = '/api'
 
   const [display, setDisplay] = useState('0')
   const [firstNum, setFirstNum] = useState(null)
@@ -179,7 +179,7 @@ const App = () => {
           <button onClick={() => handleNumber('0')} className="bg-white p-4 rounded-lg col-span-2">0</button>
           <button onClick={handleDecimal} className="bg-white p-4 rounded-lg">.</button>
           <button onClick={() => chooseOperator('+')} className="bg-blue-300 p-4 rounded-lg">+</button>
-          <button onClick={calculate} className="bg-green-400 p-4 rounded-lg col-span-4">=</button>
+          <button onClick={calculate} className="bg-gray-400 p-4 rounded-lg col-span-4">=</button>
 
         </div>
 

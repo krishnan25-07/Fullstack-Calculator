@@ -1,14 +1,15 @@
 import express from 'express'
+import { fileURLToPath } from 'node:url'
 import cors from 'cors'
 const app=express()
 app.use(cors())
-app.get('/',(req,res)=>{
+app.get('/api/',(req,res)=>{
    
    res.send({ success:true,
     message:'Hello from the server'
    })
 })
-app.get('/add/:a/:b',(req,res)=>{
+app.get('/api/add/:a/:b',(req,res)=>{
     const a=parseInt(req.params.a)
     const b=parseInt(req.params.b)
     if(isNaN(a)||isNaN(b)){
@@ -26,7 +27,7 @@ app.get('/add/:a/:b',(req,res)=>{
         })
     }
 })
-app.get('/sub/:a/:b',(req,res)=>{
+app.get('/api/sub/:a/:b',(req,res)=>{
     const a=parseInt(req.params.a)
     const b=parseInt(req.params.b)
     if(isNaN(a)||isNaN(b)){
@@ -44,7 +45,7 @@ app.get('/sub/:a/:b',(req,res)=>{
             })
           }
 })
-     app.get('/multiply/:a/:b',(req,res)=>{
+     app.get('/api/multiply/:a/:b',(req,res)=>{
     const a=parseInt(req.params.a)
     const b=parseInt(req.params.b)
     if(isNaN(a)||isNaN(b)){
@@ -62,7 +63,7 @@ app.get('/sub/:a/:b',(req,res)=>{
             })
           }
         })
-          app.get('/divide/:a/:b',(req,res)=>{
+          app.get('/api/divide/:a/:b',(req,res)=>{
     const a=parseInt(req.params.a)
     const b=parseInt(req.params.b)
     if(isNaN(a)||isNaN(b)){
@@ -87,7 +88,7 @@ app.get('/sub/:a/:b',(req,res)=>{
           }
         })
     
-          app.get('/module/:a/:b',(req,res)=>{
+          app.get('/api/module/:a/:b',(req,res)=>{
     const a=parseInt(req.params.a)
     const b=parseInt(req.params.b)
     if(isNaN(a)||isNaN(b)){
@@ -123,7 +124,7 @@ app.get('/sub/:a/:b',(req,res)=>{
             })
           }
         })
-        app.get('/percentage/:part/:whole',(req,res)=>{
+        app.get('/api/percentage/:part/:whole',(req,res)=>{
     const part=parseFloat(req.params.part)
     const whole=parseFloat(req.params.whole)
 
@@ -143,8 +144,15 @@ app.get('/sub/:a/:b',(req,res)=>{
     }
 })
 
-const PORT = process.env.PORT || 3000
+const isDirectRun = process.argv[1] &&
+    fileURLToPath(import.meta.url) === process.argv[1]
 
-app.listen(PORT, () => {
-    console.log("Server is running...")
-})
+if (isDirectRun) {
+    const PORT = process.env.PORT || 3000
+
+    app.listen(PORT, () => {
+        console.log("Server is running...")
+    })
+}
+
+export default app
