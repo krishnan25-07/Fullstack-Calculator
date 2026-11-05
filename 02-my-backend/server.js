@@ -1,5 +1,4 @@
 import express from 'express'
-import { fileURLToPath } from 'node:url'
 import cors from 'cors'
 const app=express()
 app.use(cors())
@@ -144,10 +143,7 @@ app.get('/api/sub/:a/:b',(req,res)=>{
     }
 })
 
-const isDirectRun = process.argv[1] &&
-    fileURLToPath(import.meta.url) === process.argv[1]
-
-if (isDirectRun) {
+if (process.env.NETLIFY !== 'true') {
     const PORT = process.env.PORT || 3000
 
     app.listen(PORT, () => {
