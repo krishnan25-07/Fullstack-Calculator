@@ -105,7 +105,7 @@ app.get('/api/sub/:a/:b',(req,res)=>{
             })
           }
         })
-          app.get('/square/:a',(req,res)=>{
+          app.get('/api/square/:a',(req,res)=>{
     const a=parseInt(req.params.a)
     
     if(isNaN(a)){
